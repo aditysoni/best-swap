@@ -11,13 +11,13 @@ import (
 	types "github.com/aditysoni/flashloan-bot/types"
 )
 
-func GetBestDexOutput(client bind.ContractBackend) (*types.DexOutput, error) {
+func GetBestDexOutput(client bind.ContractBackend, tokenInitial string, tokenFinal string ) (*types.DexOutput, error) {
 	amountIn := big.NewInt(1e18) // 1 WETH
 
 	// WETH -> DAI path
 	path := []common.Address{
-		common.HexToAddress("0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2"), // WETH
-		common.HexToAddress("0x6B175474E89094C44Da98b954EedeAC495271d0F"), // DAI
+		common.HexToAddress(tokenInitial), // WETH
+		common.HexToAddress(tokenFinal), // DAI
 	}
 
 	// Fetch from Uniswap
